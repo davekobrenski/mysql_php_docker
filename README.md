@@ -1,6 +1,12 @@
 # Docker Compose with MySQL, Adminer, and PHP/Apache
 
-Clone repo and run:
+Clone repo: 
+
+```
+git clone https://github.com/davekobrenski/mysql_php_docker.git
+```
+
+Initialize with:
 
 ```
 npm run init
