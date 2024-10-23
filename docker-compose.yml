@@ -1,0 +1,48 @@
+services:
+
+  mysql:
+    container_name: mysql
+    image: mysql:9.0.1
+    restart: always
+    networks:
+      - mysqlserver
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+  web:
+    image: php:7.2.2-apache
+    container_name: php_web
+    depends_on:
+      - mysql
+    volumes:
+      - ./php/:/var/www/html/
+    ports:
+      - "8100:80"
+    stdin_open: true
+    tty: true
+    networks:
+      - mysqlserver
+
+  adminer:
+    container_name: adminer
+    image: adminer:latest
+    restart: always
+    depends_on:
+      - mysql
+    networks: 
+      - mysqlserver
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+    ports:
+      - 8080:8080
+networks:
+  mysqlserver:
+    driver: bridge

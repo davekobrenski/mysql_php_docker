@@ -1,0 +1,14 @@
+{
+  "name": "mysql_php_docker",
+  "version": "1.0.0",
+  "description": "Docker compose with MySQL, Adminer, and PHP/Apache",
+  "author": {
+    "name": "Dave Kobrenski",
+    "email": "dave@rlmg.com"
+  },
+  "scripts": {
+    "init": "mkdir -p mysql && mkdir -p init && mkdir -p php",
+    "start": "docker-compose up -d"
+  },
+  "license": "ISC"
+}
