@@ -8,7 +8,8 @@
   },
   "scripts": {
     "init": "mkdir -p mysql && mkdir -p init && mkdir -p php",
-    "start": "docker-compose up -d"
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down"
   },
   "license": "ISC"
 }
